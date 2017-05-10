@@ -1,6 +1,6 @@
 # :scream: Scary Strings! :scream:
 
-> **Usage**: `perl scary-strings.pl <source_directory> -w(ordlist) WORDLIST -v(erbose)`
+> **Usage**: `perl scary-strings.pl SOURCE -w(ordlist) WORD_LIST -v(erbose)`
 
 **Flag potentially dangerous API calls** in PHP code, a.k.a. lines containing **_scary strings_** from a security perspective!
 
