@@ -116,14 +116,6 @@ sub wanted {
 
 # ============== Begin program execution ============== #
 
-# Print usage if incorrect input
-my $num_args = $#ARGV + 1;
-if ($num_args < 1) {
-    print $num_args;
-    print "Usage: $0 <source_directory> [wordlist] [-v(erbose)]\n";
-    exit;
-}
-
 # Get command line params
 GetOptions(
     'wordlist|w=s' => \$wordlist,
@@ -143,7 +135,7 @@ die "$source is neither a file nor a directory.\n" unless (-T $source or -d $sou
 print '===>>>>>   PHP SCARY STRINGS   <<<<<===', "\n";
 print "\t", 'Source code analysis tool, Copyright (C) 2017 by John Saigle', "\n";
 print "\t", 'Analyse PHP source code for potentially dangerous APIs, or "scary strings"!', "\n";
-print "\t", 'This is free software.', "\n";
+print "\t", 'This is free software. <https://github.com/johnsaigle/scary-strings>', "\n";
 
 
 if (-T $source) {
