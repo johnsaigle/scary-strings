@@ -1,5 +1,8 @@
 # :scream: Scary Strings! :scream:
-Flag potentially dangerous API calls in PHP code, a.k.a. lines containing **_scary strings_** from a security perspective!
+
+> **Usage**: `perl scary-strings.pl <source_directory> -w(ordlist) WORDLIST -v(erbose)`
+
+**Flag potentially dangerous API calls** in PHP code, a.k.a. lines containing **_scary strings_** from a security perspective!
 
 Use this tool as a first step during a security audit on your web applciation's source code!
 
