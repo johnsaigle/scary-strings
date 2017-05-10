@@ -1,0 +1,16 @@
+fopen
+readfile
+file
+fpassthru
+gzopen
+gzfile
+gzpassthru
+readgzfile
+copy
+rename
+rmdir
+mkdir
+unlink
+file_get_contents
+file_put_contents
+parse_ini_file

@@ -1,0 +1,7 @@
+http_redirect
+apache_request_headers
+header
+HttpMessage::setResponseCode
+HttpMessage::setHeaders
+setResponseCode
+setHeaders
