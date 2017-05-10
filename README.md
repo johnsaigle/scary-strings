@@ -1,7 +1,8 @@
-# Scary Strings
-Flag potentially dangerous API calls in PHP code. 
-Use this tool as a first step toward a security audit on your source code.
+# :scream: Scary Strings! :scream:
+Flag potentially dangerous API calls in PHP code, a.k.a. lines containing **_scary strings_** from a security perspective!
 
-Flagged lines of code are printined in a tab-delimited format and can thus be easily imported into a spreadsheet.
+Use this tool as a first step during a security audit on your web applciation's source code!
 
-The list of potentially dangerous API calls comes from the [Web Application Hacker's Handbook](http://mdsec.net/wahh/).
+Flagged lines of code are printed in a tab-delimited format and can thus be easily imported into a spreadsheet!
+
+The list of potentially dangerous API calls comes from the [Web Application Hacker's Handbook](http://mdsec.net/wahh/)!
