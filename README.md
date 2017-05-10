@@ -4,7 +4,7 @@
 
 **Flag potentially dangerous API calls** in PHP code, a.k.a. lines containing **_scary strings_** from a security perspective!
 
-Use this tool as a first step during a security audit on your web applciation's source code!
+Use this tool as a first step during a security audit on your web application's source code!
 
 Flagged lines of code are printed in a tab-delimited format and can thus be easily imported into a spreadsheet!
 
