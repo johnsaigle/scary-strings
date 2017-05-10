@@ -1,7 +1,7 @@
 # Scan a directory for php files containing potentially dangerous API calls.
 # For use when performing security audits on an application's source code.
 
-# This project is free software operating using the 
+# This project is free software operating under the GNU GPLv3.0 licence.
 #!/usr/bin/perl -w
 use strict;
 use warnings;
