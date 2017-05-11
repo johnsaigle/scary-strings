@@ -2,7 +2,7 @@
 
 > **Usage**: `perl scary-strings.pl SOURCE -w(ordlist) WORD_LIST -v(erbose)`
 
-**Flag potentially dangerous API calls** in PHP code, a.k.a. lines containing **_scary strings_** from a security perspective!
+**Flag potentially dangerous API calls and/or superglobals** in PHP source code, a.k.a. lines containing **_scary strings_** from a security perspective!
 
 Use this tool as a first step during a security audit on your web application's source code!
 
