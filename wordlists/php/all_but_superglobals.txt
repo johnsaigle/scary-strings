@@ -43,12 +43,3 @@ socket_send
 socket_recv
 fsockopen
 pfsockopen
-GLOBALS
-SERVER
-GET
-POST
-FILES
-COOKIE
-SESSION
-REQUEST
-ENV

@@ -50,8 +50,12 @@ sub search_file_for_scary_strings {
         next if (begins_with($line, "/*") || begins_with($line, "*") || begins_with($line, "//") || begins_with($line, "}"));
         # iterate over array and print the line nubmer where matches are found
         for my $function_name (@function_names) {
+            # $pattern matches 'function(...' and 'superglobal[...'
+            # in order to match on cases split across many lines
+            my $api_call = $function_name . '(';
+            my $superglobal = $function_name . '[';
             if ($function_name) {
-                if ($line =~ /$function_name\(.*\)/) {
+                if ($line =~ /\Q$api_call\E/ or $line =~ /\Q$superglobal\E/) {
                     my $output_line = join("\t", $basename, $function_name, $., $line, "\n");
                     push (@output_lines, $output_line);
                 }
