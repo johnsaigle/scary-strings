@@ -2,7 +2,7 @@
 
 #|(Help message will go here.)
 unit sub MAIN(
-    Str $path-to-directory, 
+    Str $path-to-directory where { .IO.d // die "directory not found"},
     $wordlist where { .IO.f // die "file not found in $*CWD"},
     Bool :e(:$no-exclude) = False, #`( -exclude, --exclude, -e, or --e)
     Bool :v(:$verbose) #`( -verbose, --verbose, -v, or --v)
@@ -13,10 +13,6 @@ unit sub MAIN(
     say "Analyse source code for potentially dangerous APIs, or 'scary strings'!";
     say "This is free software. <https://github.com/johnsaigle/scary-strings>";
 
-    if ! ($wordlist.IO ~~ :f) {
-        say "$wordlist is not a file.";
-        exit;
-    }
     if ! ($path-to-directory.IO ~~ :d) {
         say "$path-to-directory is not a directory.";
         exit;
