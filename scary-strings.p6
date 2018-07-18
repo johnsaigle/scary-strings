@@ -1,15 +1,11 @@
 #!/usr/bin/env perl6
 
-sub MAIN(
-    Str $path_to_directory, 
-    Str $wordlist = 'wordlists/php/all.txt', 
-    @exclude where Array = [
-        'vendor', 
-        '.git',
-        '.git-rewrite',
-        '.phan'
-    ], #TODO Probably more dirs to exclude.
-    Str $verbose = ''
+#|(Help message will go here.)
+unit sub MAIN(
+    Str $path-to-directory, 
+    $wordlist where { .IO.f // die "file not found in $*CWD"},
+    Bool :e(:$no-exclude) = False, #`( -exclude, --exclude, -e, or --e)
+    Bool :v(:$verbose) #`( -verbose, --verbose, -v, or --v)
 ) {
     # Print header
     say '===>>>>>   SCARY STRINGS   <<<<<===', "\n";
@@ -21,57 +17,58 @@ sub MAIN(
         say "$wordlist is not a file.";
         exit;
     }
-    if ! ($path_to_directory.IO ~~ :d) {
-        say "$path_to_directory is not a directory.";
+    if ! ($path-to-directory.IO ~~ :d) {
+        say "$path-to-directory is not a directory.";
         exit;
     }
     my @contents = $wordlist.IO.lines;
 
-    my @files_to_scan = recurse_through_directories(
-        $path_to_directory, 
-        get_file_extensions_by_language(
+    my @folders_to_exclude = [];
+    unless $no-exclude {
+        @folders_to_exclude = |get-folder-exclusions-by-language('php'), |get-generic-excludes();
+    }
+    my @files-to-scan = recurse-through-directories(
+        $path-to-directory, 
+        get-file-extensions-by-language(
             [
                 # TODO add more
                 'php'
             ]
         ),
-        @exclude
+        @folders_to_exclude
     );
-    @files_to_scan.join("\n").say;
-
-
-
+    @files-to-scan.join("\n").say;
 
     # echo results to csv file:
     # function name | path to file | line number | line 
 }
 
 # Scan dir recursively all files of the given list of extensions.
-sub recurse_through_directories(
-    Str $path_to_directory, 
+sub recurse-through-directories(
+    Str $path-to-directory, 
     @extensions where Array,
-    @excluded_folders where Array,
+    @excluded-folders where Array,
 ) {
-    return [] if $path_to_directory.IO.basename (elem) @excluded_folders;
-    my @scary_files;
-    my @cwd_files = dir $path_to_directory;
-    for @cwd_files -> $f {
+    return [] if $path-to-directory.IO.basename (elem) @excluded-folders;
+    my @scary-files;
+    my @cwd-files = dir $path-to-directory;
+    for @cwd-files -> $f {
         if ($f.IO ~~ :f) {
-            @scary_files.push($f) if $f.extension :parts(0..2) (elem) @extensions;
+            @scary-files.push($f) if $f.extension :parts(0..2) (elem) @extensions;
         }
         # If directory is found, recursively add scary files from that directory.
         if ($f.IO ~~ :d) {
-            @scary_files = flat @scary_files, recurse_through_directories(
+            @scary-files = flat @scary-files, recurse-through-directories(
                 $f.path,
                 @extensions,
-                @excluded_folders
+                @excluded-folders
             );
         }
     }
-    return @scary_files;
+    @scary-files;
 }
 
-sub get_file_extensions_by_language(@languages where Array) {
+sub get-file-extensions-by-language(@languages where Array) {
     # Associte file extensions with languages. Only search these files
     # for scary strings
     my @extensions;
@@ -83,6 +80,21 @@ sub get_file_extensions_by_language(@languages where Array) {
             }
         }
     }
-    say @extensions;
     @extensions;
+}
+
+# Exclude common 3rd-party folders based on programming language.
+sub get-generic-excludes() {
+    return get-folder-exclusions-by-language('generic');
+}
+multi get-folder-exclusions-by-language($language where Str) {
+    my @folders = "excludes/$language".IO.lines;
+    @folders;
+}
+multi get-folder-exclusions-by-language(@languages where Array) {
+    my @folders;
+    for @languages -> $language {
+        @folders = flat @folders, get-folder-exclusions-by-language($language);
+    }
+    @folders;
 }
