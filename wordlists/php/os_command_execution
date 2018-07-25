@@ -1,0 +1,6 @@
+exec
+passthru
+popen
+proc_open
+shell_exec
+system
