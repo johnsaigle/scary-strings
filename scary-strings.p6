@@ -64,10 +64,10 @@ unit sub MAIN(
             }
         }
     }
-    spurt "results.csv", @output.join("\n");
-
-    # echo results to csv file:
-    # function name | path to file | line number | line 
+    # TODO make customizable
+    my $output-file = 'results.csv';
+    spurt $output-file, @output.join("\n");
+    say "Results written to $output-file.";
 }
 
 # Scan dir recursively all files of the given list of extensions.
