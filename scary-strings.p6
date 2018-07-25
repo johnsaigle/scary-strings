@@ -1,5 +1,6 @@
 #!/usr/bin/env perl6
 
+#TODO write detailed help info.
 #|(Help message will go here.)
 unit sub MAIN(
     Str $path-to-directory where { .IO.d // die "directory not found"},
@@ -14,10 +15,10 @@ unit sub MAIN(
     say "This is free software. <https://github.com/johnsaigle/scary-strings>";
 
     if ! ($path-to-directory.IO ~~ :d) {
-        say "$path-to-directory is not a directory.";
+        note "$path-to-directory is not a directory.";
         exit;
     }
-    my @contents = $wordlist.IO.lines;
+    my @function-names = $wordlist.IO.lines;
 
     my @folders_to_exclude = [];
     unless $no-exclude {
@@ -33,7 +34,37 @@ unit sub MAIN(
         ),
         @folders_to_exclude
     );
-    @files-to-scan.join("\n").say;
+    # CSV file headers
+    my @output = ['Function Name,Line Number,Line,File'];
+    say "Scanning {@files-to-scan.elems} files...";
+    # TODO can this be more efficient?
+    for @files-to-scan -> $file {
+        for $file.IO.lines.kv -> $line_number, $line {
+            # skip check if the line is a comment
+            next if $line.starts-with('//')
+                || $line.starts-with('*')
+                || $line.starts-with('/*')
+                || $line.starts-with('*/')
+                || $line.starts-with('#');
+            for @function-names -> $function-name {
+                # Match when we find a function name followed by an opening
+                # parenthesis (in the case of a function call) or an opening
+                # square bracket (in the case of PHP superglobal use).
+                if $line ~~ /$function-name(\[|\()/ {
+                    # Join info together for csv printing
+                    @output.push(
+                        [
+                            $function-name,
+                            $line_number,
+                            $line.trim,
+                            $file
+                        ].join(',')
+                    );
+                }
+            }
+        }
+    }
+    spurt "results.csv", @output.join("\n");
 
     # echo results to csv file:
     # function name | path to file | line number | line 
