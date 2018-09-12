@@ -134,8 +134,6 @@ multi get-folder-exclusions-by-language(@languages where Array) {
     for @languages -> $language {
         @folders = flat @folders, get-folder-exclusions-by-language($language);
     }
-    say "Folders are ";
-    say @folders;
     @folders;
 }
 
