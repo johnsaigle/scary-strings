@@ -18,8 +18,10 @@ unit sub MAIN(
         note "$path-to-directory is not a directory.";
         exit;
     }
+    # Read scary strings from wordlist file.
     my @function-names = $wordlist.IO.lines;
 
+    # Generate list of files to scan.
     my @folders_to_exclude = [];
     unless $no-exclude {
         @folders_to_exclude = |get-folder-exclusions-by-language('php'), |get-generic-excludes();
@@ -34,51 +36,66 @@ unit sub MAIN(
         ),
         @folders_to_exclude
     );
-    # CSV file headers
+    # Find matches
     my @output = ['Function Name,Line Number,Line,File'];
-    say "Scanning {@files-to-scan.elems} files...";
+    my $num-files = @files-to-scan.elems;
+    print "\nScanning $num-files file";
+    print 's' if $num-files > 1;
+    say "...";
     # TODO can this be more efficient?
-    my $a-lot-of-lines = 500;
     for @files-to-scan -> $file {
-        say "--> $file";
+        my @results = scan-file-for-scary-strings($file, @function-names);
+        say "\t* Found {@results.elems} scary strings." if @results.elems;
+        @output = |@output, |@results;
+    }
+    # Write results to output csv
+    # TODO make customizable
+    if @output.elems === 1 {
+        say "No scary strings found!";
+        exit;
+    }
+    my $output-file = 'results.csv';
+    spurt $output-file, @output.join("\n");
+    say "\nResults written to [$output-file].";
+}
+
+sub scan-file-for-scary-strings($file where IO::Path, @function-names where Array) {
+    say "---> [$file]";
 =begin comment
         Perl6 will crash with malformed UTF-8 chars. I don't know a way to open
         a file using that .IO.lines method while also specifying an encoding.
         So instead the file is slurped and then manually chunked.
 =end comment
-        my $contents = slurp $file, enc => 'utf8-c8';
-        my @lines = $contents.split("\n");
-        my $num-lines = @lines.elems;
-        if $num-lines > $a-lot-of-lines {
-            # Warn user when a very big file is being scanned.
-            say "\t--> This file contains $num-lines lines. This might take a while..." 
-        }
-        for @lines.kv -> $line-number, $l {
-            my $line = $l.trim;
-            # skip check if the line is a comment
-            next if skippable($line);
-            for @function-names -> $function-name {
-                # Match when we find a function name followed by an opening
-                # parenthesis (in the case of a function call) or an opening
-                # square bracket (in the case of PHP superglobal use).
-                if $line ~~ /$function-name(\[|\()/ {
-                    # Join info together for csv printing
-                    @output.push(
-                        [
-                            $function-name,
-                            $line-number,
-                            $line,
-                            $file
-                        ].join(',')
-                    );
-                }
+    my $contents = slurp $file, enc => 'utf8-c8';
+    my @lines = $contents.split("\n");
+    my $num-lines = @lines.elems;
+    # Warn user when a very big file is being scanned.
+    my $a-lot-of-lines = 1000;
+    if $num-lines > $a-lot-of-lines {
+        say "\t--> This file contains $num-lines lines. This might take a while..." 
+    }
+    my @output;
+    # Iterate over all lines in the files and search for matching funciton calls
+    for @lines.kv -> $line-number, $l {
+        my $line = $l.trim;
+        # skip check if the line is a comment
+        next if skippable($line);
+        for @function-names -> $scary-string {
+            # Check-match returns an empty string on failure
+            if $line ~~ /$scary-string(\[|\()/ {
+                # Join info together for csv printing
+                @output.push(
+                    [
+                        $scary-string,
+                        $line-number,
+                        $line,
+                        $file
+                    ].join(',')
+                );
             }
         }
     }
-    # TODO make customizable
-    my $output-file = 'results.csv';
-    spurt $output-file, @output.join("\n");
-    say "Results written to $output-file.";
+    return @output;
 }
 
 # Scan dir recursively all files of the given list of extensions.
@@ -144,6 +161,6 @@ sub skippable($line where Str) {
         || $line.starts-with('/*')
         || $line.starts-with('*/')
         || $line.starts-with('#')
-        || $line ~~ /[\\n\\t]+/;
+        || $line.starts-with("\n");
     return False;
 }
