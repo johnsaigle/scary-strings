@@ -38,14 +38,25 @@ unit sub MAIN(
     my @output = ['Function Name,Line Number,Line,File'];
     say "Scanning {@files-to-scan.elems} files...";
     # TODO can this be more efficient?
+    my $a-lot-of-lines = 500;
     for @files-to-scan -> $file {
-        for $file.IO.lines.kv -> $line_number, $line {
+        say "--> $file";
+=begin comment
+        Perl6 will crash with malformed UTF-8 chars. I don't know a way to open
+        a file using that .IO.lines method while also specifying an encoding.
+        So instead the file is slurped and then manually chunked.
+=end comment
+        my $contents = slurp $file, enc => 'utf8-c8';
+        my @lines = $contents.split("\n");
+        my $num-lines = @lines.elems;
+        if $num-lines > $a-lot-of-lines {
+            # Warn user when a very big file is being scanned.
+            say "\t--> This file contains $num-lines lines. This might take a while..." 
+        }
+        for @lines.kv -> $line-number, $l {
+            my $line = $l.trim;
             # skip check if the line is a comment
-            next if $line.starts-with('//')
-                || $line.starts-with('*')
-                || $line.starts-with('/*')
-                || $line.starts-with('*/')
-                || $line.starts-with('#');
+            next if skippable($line);
             for @function-names -> $function-name {
                 # Match when we find a function name followed by an opening
                 # parenthesis (in the case of a function call) or an opening
@@ -55,8 +66,8 @@ unit sub MAIN(
                     @output.push(
                         [
                             $function-name,
-                            $line_number,
-                            $line.trim,
+                            $line-number,
+                            $line,
                             $file
                         ].join(',')
                     );
@@ -124,4 +135,15 @@ multi get-folder-exclusions-by-language(@languages where Array) {
         @folders = flat @folders, get-folder-exclusions-by-language($language);
     }
     @folders;
+}
+
+# Checks if a string is a code comment or just whitespace.
+sub skippable($line where Str) {
+    return True if $line.starts-with('//')
+        || $line.starts-with('*')
+        || $line.starts-with('/*')
+        || $line.starts-with('*/')
+        || $line.starts-with('#')
+        || $line ~~ /[\\n\\t]+/;
+    return False;
 }
