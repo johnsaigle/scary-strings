@@ -1,3 +1,0 @@
-mysql_query
-mssql_query
-pg_query

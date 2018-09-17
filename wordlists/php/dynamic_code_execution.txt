@@ -1,6 +1,0 @@
-eval
-call_user_func
-call_user_func_array
-call_user_method
-call_user_method_array
-create_function
