@@ -1,0 +1,11 @@
+open
+sysopen
+selectall_arrayref
+eval
+system
+exec
+qx
+redirect
+socket
+connect
+sockaddr_in
