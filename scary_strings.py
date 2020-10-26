@@ -127,3 +127,5 @@ with open(args.outfile, 'w') as out:
         ",".join(['Function Name', 'Line Number', 'Line/This ', 'Filepath']))
     out.write("\n")
     out.write("\n".join(flat_list))
+
+eval('print("hello")')

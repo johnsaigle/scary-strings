@@ -6,10 +6,12 @@ Use this tool as a first step during a security audit on your web application's 
 
 Flagged lines of code are written to a CSV file so you can track your audit progress!
 
-The list of potentially dangerous API calls comes from the [Web Application Hacker's Handbook](http://mdsec.net/wahh/)!
+The list of potentially dangerous API calls comes primarily from the [Web Application Hacker's Handbook](http://mdsec.net/wahh/).
+
+The basic lists from this book have been modified and augmented by adding function calls and other scary strings that I've
+found in my experience as well as from blog posts.
 
 ## Languages Currently Supported
 
 - PHP
-
-with plans to add support for Python as well, and probably JavaScript.
+- Python (limited wordlists)
