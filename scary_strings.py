@@ -60,12 +60,12 @@ parser.add_argument('wordlist', metavar='wordlist',
                     help='Text file containing a list of dangerous strings')
 parser.add_argument('path', metavar='path',
                     help='The directory containing files to scan')
-parser.add_argument('out_file', metavar='out_file', default=f'result.csv', nargs='?',
+parser.add_argument('--outfile', metavar='outfile', default=f'scarystrings-{datetime.datetime.now()}.csv', nargs='?',
                     help='The file into which the results will be written.')
 args = parser.parse_args()
 
 # Print header
-print('===>>>>>   SCARY STRINGS   <<<<<===')
+print('😱 😱 😱 S C A R Y  *  S T R I N G S 😱 😱 😱')
 print("Source code analysis tool, Copyright (C) 2020 by John Saigle")
 print("Analyse source code for potentially dangerous APIs, or 'scary strings'!")
 print("This is free software. <https://github.com/johnsaigle/scary-strings>\n")
@@ -95,9 +95,9 @@ flat_list = [item for sublist in result for item in sublist]
 if len(flat_list) == 0:
     exit("Scan complete. No scary strings found!")
 
-print(f"Scan complete. Writing results to {args.out_file}")
+print(f"Scan complete. Writing results to {args.outfile}")
 
-with open(args.out_file, 'w') as out:
+with open(args.outfile, 'w') as out:
     out.write(
         ",".join(['Function Name', 'Line Number', 'Line/This ', 'Filepath']))
     out.write("\n")
