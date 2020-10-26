@@ -1,0 +1,10 @@
+# Ignore editor files
+.vscode/
+
+
+# Ignore results files
+*.csv
+
+# Ignoring files created by pipenv
+bin/
+lib/
