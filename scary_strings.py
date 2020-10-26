@@ -14,10 +14,35 @@ def build_list_of_file_extensions(language):
         return list(map(str.strip, f.readlines()))
 
 
-def build_list_of_files_to_scan(folder, extensions):
-    return [os.path.join(root, filename)
-            for root, dirs, files in os.walk(folder)
-            for filename in files if filename.endswith(tuple(extensions))]
+def build_list_of_exclude_dirs(language):
+    """Builds a list of directories to be excluded from analysis. Usually these
+    will be dependency files sucha s the vendor/ folder in PHP projects using composer
+    or the node_modules/ folder for JS projects.
+    """
+    excludes = []
+    filepath = os.path.dirname(os.path.abspath(
+        __file__)) + f"/excludes/generic"
+    with open(filepath, 'r') as f:
+        excludes = excludes + list(map(str.strip, f.readlines()))
+
+    # Add language-specific excludes
+    filepath = os.path.dirname(os.path.abspath(
+        __file__)) + f"/excludes/{language}"
+
+    with open(filepath, 'r') as f:
+        excludes = excludes + list(map(str.strip, f.readlines()))
+
+    return excludes
+
+
+def build_list_of_files_to_scan(folder, extensions, exclude_dirs=[]):
+    files_to_scan = []
+    for root, dirs, files in os.walk(folder, topdown=True):
+        dirs[:] = [d for d in dirs if d not in exclude_dirs]
+        files = [os.path.join(root, filename) for filename in files if filename.endswith(
+            tuple(extensions))]
+        files_to_scan = files_to_scan + files
+    return files_to_scan
 
 
 def scan_file(filepath, function_names, language):
@@ -82,7 +107,7 @@ if len(function_names) == 0:
 
 # Get a list of files to examine
 files_to_scan = build_list_of_files_to_scan(
-    args.path, build_list_of_file_extensions(args.language))
+    args.path, build_list_of_file_extensions(language), build_list_of_exclude_dirs(language))
 
 print(f"Found {len(files_to_scan)} files. Starting scan...")
 with Halo(spinner='dots'):
