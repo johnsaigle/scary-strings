@@ -52,3 +52,7 @@ _COOKIE
 _SESSION
 _REQUEST
 _ENV
+mt_srand
+mt_rand
+srand
+rand

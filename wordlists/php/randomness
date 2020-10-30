@@ -1,0 +1,4 @@
+mt_srand
+mt_rand
+srand
+rand
