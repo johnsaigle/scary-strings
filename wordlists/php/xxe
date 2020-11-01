@@ -1,0 +1,3 @@
+simplexml_load_string
+simplexml_load_file
+simplexml_import_dom

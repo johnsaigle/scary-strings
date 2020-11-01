@@ -56,3 +56,7 @@ mt_srand
 mt_rand
 srand
 rand
+include
+require
+require_once
+include_once
