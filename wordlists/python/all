@@ -1,7 +1,7 @@
-eval
-exec
 format
 input
-loads
-dumps
+pickle.dumps
+pickle.loads
+eval
+exec
 system

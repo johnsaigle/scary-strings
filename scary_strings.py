@@ -55,6 +55,10 @@ def scan_file(filepath, function_names, language):
     for line_number, haystack in zip(range(0, num_lines), lines):
 
         for needle in function_names:
+            # Basic error checking: skip empty lines
+            if len(needle) == 0:
+                continue
+
             # Add an opening bracket to match on function calls only
             pattern = f"{needle}\("
             match = re.search(pattern, haystack)
