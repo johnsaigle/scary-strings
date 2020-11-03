@@ -11,6 +11,22 @@ The list of potentially dangerous API calls comes primarily from the [Web Applic
 The basic lists from this book have been modified and augmented by adding function calls and other scary strings that I've
 found in my experience as well as from blog posts.
 
+## Usage
+
+Make sure `pipenv` is installed, then run `pipenv shell`.
+
+### Example 1: Scanning a PHP project for all dangerous function calls
+
+```bash
+./scary-strings php wordlists/php/all /path/to/php/project
+```
+
+### Example 2: Scan a Python project for object serialization functions
+
+```bash
+./scary-strings python wordlists/python/object_serialization /path/to/python/project
+```
+
 ## Languages Currently Supported
 
 - PHP
