@@ -45,7 +45,7 @@ def build_list_of_files_to_scan(folder, extensions, exclude_dirs=[]):
     return files_to_scan
 
 
-def scan_file(filepath, function_names, language):
+def scan_file(filepath, function_names, language, scan_comments, comment_wordlist):
     lines = []
     with open(filepath, 'r', encoding='utf8') as f:
         lines = list(map(str.strip, f.read().splitlines()))
@@ -54,14 +54,25 @@ def scan_file(filepath, function_names, language):
     output = []
     for line_number, haystack in zip(range(0, num_lines), lines):
 
-        for needle in function_names:
+        for word in comment_wordlist:
             # Basic error checking: skip empty lines
-            if len(needle) == 0:
+            if len(word) == 0:
                 continue
 
+            match = False
+            if scan_comments:
+                # TODO This should use some kind of parsing to only analyze comments rather than code
+                pattern = f"{word}"
+                match = re.search(pattern, haystack, re.IGNORECASE)
+                if match:
+                    output.append(
+                        ','.join(
+                            list(map(str, ['comment', word, line_number, haystack, filepath]))))
+
+        for needle in function_names:
             # Add an opening bracket to match on function calls only
             pattern = f"{needle}\("
-            match = re.search(pattern, haystack)
+            match = re.search(pattern, haystack, re.IGNORECASE)
 
             if language == 'php':
                 """A special consideration is made for PHP superglobals. They aren't really functions
@@ -69,13 +80,13 @@ def scan_file(filepath, function_names, language):
                 that will match on square brackets instead of round parentheses.
                 """
                 suplerglobal_pattern = f"{needle}\["
-                match = re.search(pattern, haystack) or re.search(
-                    suplerglobal_pattern, haystack)
+                match = re.search(pattern, haystack, re.IGNORECASE) or re.search(
+                    suplerglobal_pattern, haystack, re.IGNORECASE)
 
             if match:
                 output.append(
                     ','.join(
-                        list(map(str, [needle, line_number, haystack, filepath]))))
+                        list(map(str, ['code', needle, line_number, haystack, filepath]))))
 
     return output
 
@@ -83,12 +94,16 @@ def scan_file(filepath, function_names, language):
 # args: Path, wordlist, exclude, verbose
 parser = argparse.ArgumentParser(description='Spooky, scary strings')
 parser.add_argument('language', metavar='language',
-                    help='The programming language to examine. Supported: PHP, Python')
+                    help='The programming language of the files to be scanned')
 # TODO This can probably be default to ALL for supported languages
 parser.add_argument('wordlist', metavar='wordlist',
                     help='Text file containing a list of dangerous strings')
 parser.add_argument('path', metavar='path',
                     help='The directory containing files to scan')
+parser.add_argument('--scan-comments', metavar='scan_comments', default=False, nargs='?',
+                    help='Whether the script should also examine comments. Default: False')
+parser.add_argument('--comment-wordlist', metavar='comment_wordlist', default='wordlists/comments/all', nargs='?',
+                    help='A file containing comments that should be flagged.')
 parser.add_argument('--outfile', metavar='outfile', default=f'scarystrings-{datetime.datetime.now()}.csv', nargs='?',
                     help='The file into which the results will be written.')
 args = parser.parse_args()
@@ -109,13 +124,18 @@ language = args.language.lower()
 if len(function_names) == 0:
     raise SystemExit('ERROR: Wordlist file is empty')
 
+comment_strings = []
+if args.scan_comments:
+    with open(args.comment_wordlist, 'r') as word_file:
+        comment_strings = word_file.read().splitlines()
+
 # Get a list of files to examine
 files_to_scan = build_list_of_files_to_scan(
     args.path, build_list_of_file_extensions(language), build_list_of_exclude_dirs(language))
 
 print(f"Found {len(files_to_scan)} files. Starting scan...")
 with Halo(spinner='dots'):
-    result = [scan_file(file_to_scan, function_names, language)
+    result = [scan_file(file_to_scan, function_names, language, args.scan_comments, comment_strings)
               for file_to_scan in files_to_scan]
 
 # flatten result
@@ -128,8 +148,6 @@ print(f"Scan complete. Writing results to {args.outfile}")
 
 with open(args.outfile, 'w') as out:
     out.write(
-        ",".join(['Function Name', 'Line Number', 'Line of Code', 'Filepath']))
+        ",".join(['Line Type','Matched On', 'Line Number', 'Line of Code', 'Filepath']))
     out.write("\n")
     out.write("\n".join(flat_list))
-
-eval('print("hello")')

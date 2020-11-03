@@ -13,18 +13,24 @@ found in my experience as well as from blog posts.
 
 ## Usage
 
-Make sure `pipenv` is installed, then run `pipenv shell`.
+Make sure `pipenv` is installed.
 
 ### Example 1: Scanning a PHP project for all dangerous function calls
 
 ```bash
-./scary-strings php wordlists/php/all /path/to/php/project
+pipenv run ./scary-strings php wordlists/php/all /path/to/php/project
 ```
 
 ### Example 2: Scan a Python project for object serialization functions
 
 ```bash
-./scary-strings python wordlists/python/object_serialization /path/to/python/project
+pipenv run ./scary-strings python wordlists/python/object_serialization /path/to/python/project
+```
+
+### Example 3: Scanning a project for dangerous function calls and problematic code comments
+
+```bash
+pipenv run ./scary_strings.py python wordlists/python/all --scan-comments=True --comment-wordlist=wordlists/comments/derogatory /path/to/python/project
 ```
 
 ## Languages Currently Supported
