@@ -1,5 +1,6 @@
 # Ignore editor files
 .vscode/
+*.swp
 
 
 # Ignore results files
