@@ -124,7 +124,7 @@ print(f"Scan complete. Writing results to {args.outfile}")
 
 with open(args.outfile, 'w') as out:
     out.write(
-        ",".join(['Function Name', 'Line Number', 'Line/This ', 'Filepath']))
+        ",".join(['Function Name', 'Line Number', 'Line of Code', 'Filepath']))
     out.write("\n")
     out.write("\n".join(flat_list))
 
