@@ -2,9 +2,8 @@
 
 **Flag potentially dangerous API calls** in source code, a.k.a. lines containing **_scary strings_** from a security perspective!
 
+## Overview
 Use this tool as a first step during a security audit on your web application's source code!
-
-Flagged lines of code are written to a CSV file so you can track your audit progress!
 
 The list of potentially dangerous API calls comes primarily from:
 
@@ -14,29 +13,19 @@ The list of potentially dangerous API calls comes primarily from:
 The basic lists from this book have been modified and augmented by adding function calls and other scary strings that I've
 found in my experience as well as from blog posts.
 
-## Usage
+## Supported languages
 
-Make sure `pipenv` is installed.
+The wordlists for PHP and Python are more or less worked out and robust. The other languages are works-in-progress
+either because they're less my area of expertise or I haven't made the time to flesh them out.
 
-### Example 1: Scanning a PHP project for all dangerous function calls
+In addition to language-specific wordlists, there `comments` folder contains strings likely to be related to
+developer notes left in source code. These are always a great place to look into when searching for vulnerabilities!
 
-```bash
-pipenv run ./scary-strings php wordlists/php/all /path/to/php/project
-```
+## History
 
-### Example 2: Scan a Python project for object serialization functions
+This project used to be a source code scanner written in Perl6/Raku/Camilla, 
+then I rewrote it in Python, and then I realized that clever usage of `grep` (or `rg`) 
+basically does the same thing my tool was doing.
 
-```bash
-pipenv run ./scary-strings python wordlists/python/object_serialization /path/to/python/project
-```
-
-### Example 3: Scanning a project for dangerous function calls and problematic code comments
-
-```bash
-pipenv run ./scary_strings.py python wordlists/python/all --scan-comments=True --comment-wordlist=wordlists/comments/derogatory /path/to/python/project
-```
-
-## Languages Currently Supported
-
-- PHP
-- Python (limited wordlists)
+As a result I decided to archive the code part and convert this into a wordlists repository
+similar to projects like Dan Miessler's [SecLists](https://github.com/danielmiessler/SecLists)
