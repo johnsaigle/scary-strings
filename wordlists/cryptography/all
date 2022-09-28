@@ -10,6 +10,7 @@ mt19937
 oee
 rc2
 rc4
+rsa
 rot13
 sha1
 srand
