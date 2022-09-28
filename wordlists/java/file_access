@@ -1,3 +1,5 @@
+createTempFile
 filename
 getRealPath
 getPathTranslated
+new File
