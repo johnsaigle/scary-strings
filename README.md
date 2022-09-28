@@ -20,19 +20,33 @@ Scanning for these strings is a good way to improve the security of your app. Ty
 for doing things safely according to the language you're using. If you can verify that such function calls are handled safely, 
 great! Your app is more secure than when you started.
 
-### Contents
+### Wordlists
+
 ```
-wordlists/
+wordlists
 ├── comments
 │   ├── all
 │   ├── derogatory
 │   ├── security
 │   └── todo
+├── cryptography
+│   └── all
+├── go
+│   ├── cryptography
+│   ├── deprecated
+│   └── err
 ├── java
 │   ├── db_access
 │   ├── file_access
 │   ├── file_inclusion
-│   └── os_command_execution
+│   ├── os_command_execution
+│   └── url_redirect
+├── javascript
+│   ├── dom-xss
+│   ├── generic
+│   └── react
+├── linters
+│   └── all
 ├── perl
 │   └── all
 ├── php
@@ -54,7 +68,8 @@ wordlists/
     ├── object_serialization
     ├── os_command_execution
     └── string_formatting
-5 directories, 26 files
+
+9 directories, 35 files
 ```
 
 ## References
