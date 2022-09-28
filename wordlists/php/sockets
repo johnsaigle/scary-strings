@@ -1,7 +1,7 @@
-socket_create
-socket_connect
-socket_write
-socket_send
-socket_recv
 fsockopen
 pfsockopen
+socket_connect
+socket_create
+socket_recv
+socket_send
+socket_write

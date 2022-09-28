@@ -1,4 +1,4 @@
-mt_srand
 mt_rand
-srand
+mt_srand
 rand
+srand
