@@ -26,6 +26,7 @@ match
 prepend
 replaceAll
 replaceWith
+substr
 wrap
 wrapAll
 wrapInner
