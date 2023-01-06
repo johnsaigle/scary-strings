@@ -32,9 +32,11 @@ wordlists
 ├── cryptography
 │   └── all
 ├── go
+│   ├── all
 │   ├── cryptography
 │   ├── deprecated
-│   └── err
+│   ├── err
+│   └── randomness
 ├── java
 │   ├── db_access
 │   ├── file_access
@@ -42,9 +44,13 @@ wordlists
 │   ├── os_command_execution
 │   └── url_redirect
 ├── javascript
+│   ├── all
+│   ├── deprecated
 │   ├── dom-xss
 │   ├── generic
-│   └── react
+│   ├── randomness
+│   ├── react
+│   └── redos
 ├── linters
 │   └── all
 ├── perl
@@ -57,19 +63,23 @@ wordlists
 │   ├── file_inclusion
 │   ├── os_command_execution
 │   ├── randomness
+│   ├── redos
 │   ├── serialization
 │   ├── sockets
 │   ├── superglobals
 │   ├── url_redirection
 │   └── xxe
-└── python
-    ├── all
-    ├── bypass
-    ├── object_serialization
-    ├── os_command_execution
-    └── string_formatting
-
-9 directories, 35 files
+├── python
+│   ├── all
+│   ├── bypass
+│   ├── object_serialization
+│   ├── os_command_execution
+│   └── string_formatting
+└── rust
+    ├── panic-macros
+    ├── unsafe
+    ├── unwrap
+    └── vectors
 ```
 
 ## References
