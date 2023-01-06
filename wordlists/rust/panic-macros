@@ -1,0 +1,7 @@
+panic!
+unreachable!
+unimplemented!
+assert_eq!
+debug_assert_eq!
+debug_assert_ne!
+todo!
