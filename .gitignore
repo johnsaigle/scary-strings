@@ -2,10 +2,5 @@
 .vscode/
 *.swp
 
-
-# Ignore results files
-*.csv
-
-# Ignoring files created by pipenv
-bin/
-lib/
+# macos
+*.DS_Store
