@@ -76,7 +76,11 @@ wordlists
 │   ├── os_command_execution
 │   └── string_formatting
 └── rust
+    ├── all
+    ├── clone
     ├── panic-macros
+    ├── resource-exhaustion
+    ├── slices
     ├── unsafe
     ├── unwrap
     └── vectors
