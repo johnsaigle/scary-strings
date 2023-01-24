@@ -1,5 +1,7 @@
 Exec
 ExecContext
+Open
+OpenDB
 Prepare
 PrepareContext
 QueryContext
