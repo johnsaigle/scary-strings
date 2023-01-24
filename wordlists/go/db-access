@@ -6,9 +6,3 @@ QueryContext
 QueryRow
 QueryRowContext
 Raw
-WithInsecure
-ioutil
-math/rand
-panic
-strings.Title
-tls.Config
