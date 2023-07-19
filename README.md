@@ -22,6 +22,9 @@ great! Your app is more secure than when you started.
 
 ### Wordlists
 
+<!-- To update:
+:r!tree wordlists
+-->
 ```
 wordlists
 ├── comments
@@ -29,11 +32,19 @@ wordlists
 │   ├── derogatory
 │   ├── security
 │   └── todo
+├── cosmossdk
+│   ├── abci
+│   ├── module-auth
+│   ├── module-authz
+│   ├── module-bank
+│   ├── module-group
+│   └── module-staking
 ├── cryptography
 │   └── all
 ├── go
 │   ├── all
 │   ├── cryptography
+│   ├── db-access
 │   ├── deprecated
 │   ├── err
 │   └── randomness
@@ -75,15 +86,22 @@ wordlists
 │   ├── object_serialization
 │   ├── os_command_execution
 │   └── string_formatting
-└── rust
+├── rust
+│   ├── all
+│   ├── clone
+│   ├── panic-macros
+│   ├── randomness
+│   ├── resource-exhaustion
+│   ├── slices
+│   ├── unsafe
+│   ├── unwrap
+│   └── vectors
+└── secrets
     ├── all
-    ├── clone
-    ├── panic-macros
-    ├── resource-exhaustion
-    ├── slices
-    ├── unsafe
-    ├── unwrap
-    └── vectors
+    ├── api-keys
+    └── public-keys
+
+13 directories, 61 files
 ```
 
 ## References

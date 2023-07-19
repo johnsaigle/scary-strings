@@ -5,8 +5,8 @@ as_chunks
 as_chunks_mut
 as_rchunks
 as_rchunks_mut
-as_simd
 assert_eq!
+as_simd
 chunks
 chunks_exact
 chunks_exact_mut
@@ -21,6 +21,9 @@ expect
 extern
 flatten_mut
 panic!
+Pcg32
+Pcg64
+Pcg64Mcg
 rchunks
 rchunks_exact
 rchunks_exact_mut
@@ -32,10 +35,13 @@ rsplit_array_mut
 rsplit_array_ref
 select_nth_unstable
 select_nth_unstable_by
+SmallRng
 split_array_mut
 split_array_ref
 split_at
 split_at_mut
+SplitMix64
+StepRng
 swap
 todo!
 unimplemented!
@@ -45,3 +51,6 @@ unwrap
 vec!
 windows
 with_capacity
+XorShiftRng
+Xoshiro256Plus
+Xoshiro256PlusPlus
