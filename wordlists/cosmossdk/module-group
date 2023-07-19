@@ -1,0 +1,14 @@
+CreateGroup
+CreateGroupPolicy
+CreateGroupWithPolicy
+Exec
+LeaveGroup
+SubmitProposal
+UpdateGroupAdmin
+UpdateGroupMembers
+UpdateGroupMetadata
+UpdateGroupPolicyAdmin
+UpdateGroupPolicyDecisionPolicy
+UpdateGroupPolicyMetadata
+Vote
+WithdrawProposal

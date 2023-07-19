@@ -1,0 +1,9 @@
+BurnCoins
+DelegateCoins
+DelegateCoinsFromAccountToModule
+MintCoins
+SendCoinsFromAccountToModule
+SendCoinsFromModuleToAccount
+SendCoinsFromModuleToModule
+UndelegateCoins
+UndelegateCoinsFromModuleToAccount
