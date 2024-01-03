@@ -6,7 +6,7 @@
 This repository contains a list of strings (usually function names) that are relevant to security auditing, usually because
 they perform a sensitive operation like changing the state of a database or accessing the filesystem.
 
-In addition to language-specific wordlists, there `comments` folder contains strings likely to be related to
+In addition to technology-specific wordlists, there `comments` folder contains strings likely to be related to
 developer notes left in source code.
 
 ### For Hackers
@@ -27,6 +27,8 @@ great! Your app is more secure than when you started.
 -->
 ```
 wordlists
+├── blockchain
+│   └── all
 ├── comments
 │   ├── all
 │   ├── derogatory
@@ -47,7 +49,8 @@ wordlists
 │   ├── db-access
 │   ├── deprecated
 │   ├── err
-│   └── randomness
+│   ├── randomness
+│   └── unsafe
 ├── java
 │   ├── db_access
 │   ├── file_access
@@ -96,27 +99,29 @@ wordlists
 │   ├── unsafe
 │   ├── unwrap
 │   └── vectors
-└── secrets
-    ├── all
-    ├── api-keys
-    └── public-keys
+├── secrets
+│   ├── all
+│   ├── api-keys
+│   └── public-keys
+├── solana
+│   └── all
+└── solidity
+    └── all
 
-13 directories, 61 files
+16 directories, 65 files
 ```
 
-## References
-The list of potentially dangerous API calls comes primarily from:
+## Sources
+
+Most of the entries in the wordlists come from my work experience as a security engineer
+and penetration tester. References for some of these choices can be found in the git commit
+history as well as the project's GitHub Issues.
+
+For many programming of the supported programming languages, the lists come from well-known hacking books
+listed below. Note that these books were published in 2011 so some of the information may be dated.
 
 - The [Web Application Hacker's Handbook](http://mdsec.net/wahh/).
-- The Art of Software Security Assessment
-
-The basic lists from this book have been modified and augmented by adding function calls and other scary strings that I've
-found in my experience as well as from blog posts.
-
-## Supported languages
-
-The wordlists for PHP and Python are more or less worked out and robust. The other languages are works-in-progress
-either because they're less my area of expertise or I haven't made the time to flesh them out.
+- [The Art of Software Security Assessment](https://www.oreilly.com/library/view/the-art-of/0321444426/).
 
 ## Similar projects
 
@@ -125,12 +130,3 @@ either because they're less my area of expertise or I haven't made the time to f
 - [fuzz.txt](https://github.com/Bo0oM/fuzz.txt)
 - [FuzzDB](https://github.com/fuzzdb-project/fuzzdb)
 - [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings)
-
-## History
-
-This project used to be a source code scanner written in Perl6/Raku/Camilla, 
-then I rewrote it in Python, and then I realized that clever usage of `grep` (or `rg`) 
-basically does the same thing my tool was doing.
-
-As a result I decided to archive the code part and convert this into a wordlists repository
-similar to other well-known projects in the hacking world. 
