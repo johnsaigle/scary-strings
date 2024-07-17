@@ -9,6 +9,7 @@ QueryRow
 QueryRowContext
 Raw
 WithInsecure
+go:generate
 ioutil
 math/rand
 panic
