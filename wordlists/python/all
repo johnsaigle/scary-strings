@@ -5,3 +5,4 @@ pickle.loads
 eval
 exec
 system
+trust_remote_code
