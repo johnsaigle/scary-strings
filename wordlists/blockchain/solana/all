@@ -16,6 +16,8 @@ invoke
 invoke_signed
 invoke_signed_unchecked
 invoke_unchecked
+load_current_index
+load_instruction_at
 mint_to
 mint_to_checked
 revoke
