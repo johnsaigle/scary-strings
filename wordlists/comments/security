@@ -1,12 +1,19 @@
 audit
 adversary
-anony
+anonym
 attacker
 authenticat
 brute
+crack
 credential
+critical
+exfiltrate
 hacker
+hardness
+hidden
 impersonat
+infiltrate
+invariant
 password
 private
 restrict
@@ -14,4 +21,5 @@ secret
 secure
 sensitive
 steal
+unsafe
 warning
