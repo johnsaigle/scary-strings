@@ -1,3 +1,4 @@
 mssql_query
 mysql_query
+mysql_real_escape_string
 pg_query
