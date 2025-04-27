@@ -1,0 +1,7 @@
+chmod
+chown
+posix_setegid
+posix_seteuid
+posix_setgid
+posix_setsid
+posix_setuid
