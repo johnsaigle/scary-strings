@@ -1,0 +1,17 @@
+addHeader
+connect
+createTempFile
+exec
+execute
+executeQuery
+executeUpdate
+filename
+forward
+getPathTranslated
+getRealPath
+include
+<jsp:include page=
+new File
+sendRedirect
+setStatus
+Socket
