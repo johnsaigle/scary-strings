@@ -1,0 +1,5 @@
+gets
+localtime
+sprintf
+strcat
+strtok
