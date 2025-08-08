@@ -1,10 +1,11 @@
 add
 construct
+complete
+create
 delete
 destroy
 destruct
 filter
-get
 modify
 post
 push
