@@ -3,6 +3,7 @@ anonym
 attacker
 audit
 authenticat
+authorization
 backdoor
 brute
 bypass
@@ -23,11 +24,14 @@ hidden
 impersonat
 infiltrate
 injection
+insecure
 invariant
 mersenne
 password
+permission
 plaintext
 private
+privilege
 race
 restrict
 sanitize
@@ -36,6 +40,8 @@ secure
 sensitive
 steal
 unsafe
+validate
+verify
 vulnerable
 warning
 xss

@@ -1,0 +1,5 @@
+constantize
+const_get
+method
+public_send
+send

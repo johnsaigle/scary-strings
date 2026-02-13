@@ -7,6 +7,7 @@ attacker
 @audit
 audit
 authenticat
+authorization
 backdoor
 bad
 band-aid
@@ -65,6 +66,7 @@ hotfix
 impersonat
 infiltrate
 injection
+insecure
 invariant
 issue
 janky
@@ -82,8 +84,10 @@ obsolete
 over-engineered
 overengineered
 password
+permission
 plaintext
 private
+privilege
 probably
 quick-fix
 race
@@ -119,6 +123,8 @@ unreliable
 unsafe
 unstable
 untested
+validate
+verify
 vulnerable
 warning
 workaround

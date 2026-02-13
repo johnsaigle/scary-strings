@@ -1,0 +1,6 @@
+getattr
+globals
+__import__
+importlib
+locals
+setattr

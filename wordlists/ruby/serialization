@@ -1,0 +1,4 @@
+Marshal.dump
+Marshal.load
+YAML.load
+YAML.unsafe_load

@@ -1,0 +1,9 @@
+_.clone
+_.cloneDeep
+_.defaults
+_.defaultsDeep
+_.merge
+_.mergeWith
+Object.assign
+__proto__
+prototype

@@ -1,10 +1,15 @@
 autoload
+constantize
+const_get
 eval
 exec
 Kernel.exec
 Kernel.spawn
 Kernel.system
 load
+Marshal.dump
+Marshal.load
+method
 Open3.capture2
 Open3.capture2e
 Open3.capture3
@@ -12,7 +17,11 @@ Open3.popen2
 Open3.popen2e
 Open3.popen3
 Process.spawn
+public_send
 require
 require_relative
+send
 spawn
 system
+YAML.load
+YAML.unsafe_load

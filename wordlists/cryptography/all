@@ -1,7 +1,13 @@
 3des
+AES
+CBC
 crc
+DES
+DSA
 ecb
+GCM
 getpid
+HMAC
 md2
 md4
 md5

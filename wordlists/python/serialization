@@ -1,0 +1,6 @@
+marshal.loads
+pickle.dumps
+pickle.loads
+shelve.open
+yaml.load
+yaml.unsafe_load

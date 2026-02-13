@@ -1,3 +1,4 @@
 serialize
 __sleep
+unserialize
 __wakeup

@@ -1,0 +1,8 @@
+Class.forName
+forName
+getDeclaredField
+getDeclaredMethod
+getMethod
+invoke
+newInstance
+setAccessible
