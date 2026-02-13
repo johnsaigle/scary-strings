@@ -1,4 +1,10 @@
+allocate
+assign
+create_account
+create_account_with_seed
 invoke
 invoke_signed
 invoke_signed_unchecked
 invoke_unchecked
+set_executable
+transfer

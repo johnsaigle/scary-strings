@@ -1,0 +1,17 @@
+deserialize
+deserialize_unchecked
+pack
+pack_into_slice
+serialize
+sol_memcmp
+sol_memcpy
+sol_memmove
+sol_memset
+try_deserialize
+try_deserialize_unchecked
+try_from_slice
+try_from_slice_unchecked
+try_to_vec
+unpack
+unpack_from_slice
+unpack_unchecked

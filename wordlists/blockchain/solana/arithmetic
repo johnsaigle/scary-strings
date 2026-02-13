@@ -1,0 +1,44 @@
+as i128
+as i16
+as i32
+as i64
+as i8
+as u128
+as u16
+as u32
+as u64
+as u8
+checked_add
+checked_div
+checked_mul
+checked_pow
+checked_rem
+checked_shl
+checked_shr
+checked_sub
+div_ceil
+overflowing_add
+overflowing_div
+overflowing_mul
+overflowing_pow
+overflowing_rem
+overflowing_shl
+overflowing_shr
+overflowing_sub
+pow
+rem_euclid
+saturating_add
+saturating_div
+saturating_mul
+saturating_pow
+saturating_sub
+try_from
+try_into
+wrapping_add
+wrapping_div
+wrapping_mul
+wrapping_pow
+wrapping_rem
+wrapping_shl
+wrapping_shr
+wrapping_sub

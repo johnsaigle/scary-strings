@@ -1,0 +1,13 @@
+DOMAIN_SEPARATOR
+_domainSeparatorV4
+ecrecover
+_hashTypedDataV4
+isValidSignature
+isValidSignatureNow
+permit
+recover
+toEthSignedMessageHash
+toTypedDataHash
+tryRecover
+_useCheckedNonce
+_useNonce
