@@ -1,0 +1,11 @@
+dofile
+io.close
+io.input
+io.lines
+io.open
+io.output
+io.read
+io.write
+os.remove
+os.rename
+os.tmpname

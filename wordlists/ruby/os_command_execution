@@ -1,0 +1,13 @@
+exec
+Kernel.exec
+Kernel.spawn
+Kernel.system
+Open3.capture2
+Open3.capture2e
+Open3.capture3
+Open3.popen2
+Open3.popen2e
+Open3.popen3
+Process.spawn
+spawn
+system

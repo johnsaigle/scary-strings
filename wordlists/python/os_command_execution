@@ -1,4 +1,10 @@
 eval
 exec
+os.popen
+os.system
+subprocess.call
+subprocess.check_call
+subprocess.check_output
+subprocess.Popen
 subprocess.run
 system

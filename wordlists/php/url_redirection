@@ -1,7 +1,7 @@
-HttpMessage::setHeaders
-HttpMessage::setResponseCode
 apache_request_headers
 header
+HttpMessage::setHeaders
+HttpMessage::setResponseCode
 http_redirect
 setHeaders
 setResponseCode

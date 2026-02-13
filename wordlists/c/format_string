@@ -1,0 +1,9 @@
+fprintf
+printf
+scanf
+snprintf
+sprintf
+sscanf
+vfprintf
+vprintf
+vsprintf

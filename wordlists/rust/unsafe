@@ -1,2 +1,4 @@
 extern
+split_at_mut_unchecked
+split_at_unchecked
 unsafe

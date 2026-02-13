@@ -1,0 +1,4 @@
+io.popen
+os.execute
+vim.fn.system
+vim.system

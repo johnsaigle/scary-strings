@@ -1,0 +1,5 @@
+auto_ptr
+const_cast
+dynamic_cast
+reinterpret_cast
+static_cast

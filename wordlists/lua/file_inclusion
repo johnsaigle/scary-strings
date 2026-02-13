@@ -1,0 +1,5 @@
+dofile
+load
+loadfile
+loadstring
+require

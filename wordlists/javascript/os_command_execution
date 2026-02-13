@@ -1,0 +1,8 @@
+child_process
+exec
+execFile
+execFileSync
+execSync
+fork
+spawn
+spawnSync

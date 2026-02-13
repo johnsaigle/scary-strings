@@ -12,6 +12,9 @@ getRealPath
 include
 <jsp:include page=
 new File
+ProcessBuilder
+Runtime.exec
+Runtime.getRuntime
 sendRedirect
 setStatus
 Socket

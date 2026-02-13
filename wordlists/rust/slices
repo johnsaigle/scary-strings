@@ -29,5 +29,7 @@ split_array_mut
 split_array_ref
 split_at
 split_at_mut
+split_at_mut_unchecked
+split_at_unchecked
 swap
 windows

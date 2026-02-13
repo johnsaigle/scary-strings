@@ -1,0 +1,10 @@
+_alloca
+alloca
+calloc
+free
+malloc
+memcpy
+memmove
+memset
+realloc
+wmemcpy

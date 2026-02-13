@@ -1,9 +1,5 @@
 backticks
-do
-eval
 exec
 open
 qx
-require
 system
-use

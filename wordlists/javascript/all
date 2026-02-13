@@ -4,6 +4,7 @@ after
 animate
 append
 before
+child_process
 constructor
 dangerouslySetInnerHtml
 document.domain
@@ -14,6 +15,11 @@ element.insertAdjacentHTML
 element.onevent
 element.outerHTML
 eval
+exec
+execFile
+execFileSync
+execSync
+fork
 has
 html
 index
@@ -23,9 +29,12 @@ insertAfter
 insertBefore
 jQuery.parseHTML
 match
+Math.random
 prepend
 replaceAll
 replaceWith
+spawn
+spawnSync
 substr
 wrap
 wrapAll

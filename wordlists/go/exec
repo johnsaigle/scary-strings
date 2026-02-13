@@ -1,4 +1,3 @@
-go:generate
 os/exec
 plugin.Open
 StartProcess
