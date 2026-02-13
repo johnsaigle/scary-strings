@@ -1,11 +1,10 @@
-@audit
-@dev
 adversary
 ai-generated
 anonym
 anti-pattern
 assumption
 attacker
+@audit
 audit
 authenticat
 backdoor
@@ -25,6 +24,7 @@ cleanup
 confusing
 copy-paste
 cors
+coupling
 crack
 crap
 credential
@@ -35,6 +35,7 @@ danger
 debt
 deprecate
 deprecated
+@dev
 dirty
 dragons
 duct-tape

@@ -70,6 +70,7 @@ reflect
 Remove
 RemoveAll
 Rename
+Repeat
 ResolveIPAddr
 ResolveTCPAddr
 ResolveUDPAddr

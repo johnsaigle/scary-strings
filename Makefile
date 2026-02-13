@@ -7,9 +7,9 @@ WORDLIST_ROOT := wordlists
 # Default: sort subcategory files in-place, then (re)generate every 'all'.
 all: sort generate
 
-# Sort each subcategory file in-place (skip 'all' files and dotfiles).
+# Sort each subcategory file in-place (skip 'all' files, dotfiles, and docs).
 sort:
-	@find $(WORDLIST_ROOT) -type f ! -name 'all' ! -name '.*' \
+	@find $(WORDLIST_ROOT) -type f ! -name 'all' ! -name '.*' ! -name '*.md' \
 		-exec sort -o {} {} \;
 	@echo "Sorted all subcategory files."
 
@@ -19,10 +19,10 @@ sort:
 # subcategory files together with the existing 'all' (to preserve any
 # standalone entries), then sort -u the result.
 generate:
-	@find $(WORDLIST_ROOT) -type f ! -name 'all' ! -name '.*' -printf '%h\n' \
+	@find $(WORDLIST_ROOT) -type f ! -name 'all' ! -name '.*' ! -name '*.md' -printf '%h\n' \
 	| sort -u \
 	| while read -r dir; do \
-		files=$$(find "$$dir" -maxdepth 1 -type f ! -name 'all' ! -name '.*' | sort); \
+		files=$$(find "$$dir" -maxdepth 1 -type f ! -name 'all' ! -name '.*' ! -name '*.md' | sort); \
 		if [ -n "$$files" ]; then \
 			cat $$files "$$dir/all" 2>/dev/null | sort -u > "$$dir/all.tmp" && \
 			mv "$$dir/all.tmp" "$$dir/all" && \
@@ -33,7 +33,7 @@ generate:
 # Remove generated 'all' files (only in directories that have subcategory
 # files — directories where 'all' is the only file are left untouched).
 clean-all:
-	@find $(WORDLIST_ROOT) -type f ! -name 'all' ! -name '.*' -printf '%h\n' \
+	@find $(WORDLIST_ROOT) -type f ! -name 'all' ! -name '.*' ! -name '*.md' -printf '%h\n' \
 	| sort -u \
 	| while read -r dir; do \
 		[ -f "$$dir/all" ] && rm "$$dir/all" && echo "Removed $$dir/all"; \
@@ -43,8 +43,8 @@ clean-all:
 # Exits non-zero if any entries are missing (useful in CI).
 check: sort
 	@rc=0; \
-	for dir in $$(find $(WORDLIST_ROOT) -type f ! -name 'all' ! -name '.*' -printf '%h\n' | sort -u); do \
-		files=$$(find "$$dir" -maxdepth 1 -type f ! -name 'all' ! -name '.*' | sort); \
+	for dir in $$(find $(WORDLIST_ROOT) -type f ! -name 'all' ! -name '.*' ! -name '*.md' -printf '%h\n' | sort -u); do \
+		files=$$(find "$$dir" -maxdepth 1 -type f ! -name 'all' ! -name '.*' ! -name '*.md' | sort); \
 		if [ -n "$$files" ]; then \
 			missing=$$(comm -23 <(cat $$files | sort -u) <(sort -u "$$dir/all" 2>/dev/null)); \
 			if [ -n "$$missing" ]; then \
